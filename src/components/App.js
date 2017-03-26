@@ -1,8 +1,9 @@
 import React from 'react';
+import Editor from './Editor';
 
 const App = () => (
   <div className='app'>
-    <h2>Hello, Mate !</h2>
+    <Editor/> 
   </div>
 );
 
