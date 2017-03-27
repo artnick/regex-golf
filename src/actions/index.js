@@ -24,9 +24,10 @@ export const addField = (title) => {
   };
 };
 
-export const deleteField = (title) => {
+export const deleteField = (index, title) => {
   return {
     type: DELETE_FIELD,
+    index,
     title,
   };
 };

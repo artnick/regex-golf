@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import FieldList from '../components/FieldList';
-import { changeValue, addField } from '../actions';
+import { changeValue, addField, deleteField } from '../actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -16,6 +16,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onAddField: (title) => {
       dispatch(addField(title));
+    },
+    onDeleteField: (index, title) => {
+      dispatch(deleteField(index, title));
     },
 
   };

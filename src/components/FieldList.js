@@ -1,7 +1,7 @@
 import React from 'react';
 import Field from './Field';
 
-const FieldList = ({ title, fields=[], onChange, onAddField }) => (
+const FieldList = ({ title, fields=[], onChange, onAddField, onDeleteField }) => (
   <div className='field-list'>
     <h3 className={'field-list__title'}>{title == 'match' ? 'Match' : 'No match'}</h3>
     <ul>{fields.map((field, index, arr) => 
@@ -9,7 +9,9 @@ const FieldList = ({ title, fields=[], onChange, onAddField }) => (
         <Field 
           value={field} 
           onChange={(value) => onChange(value, index, title)}
-          onFocus={index == arr.length - 1 ? () => onAddField(title) : ()=>(null)}
+          onFocus={ () => onAddField(title) }
+          onDelete={() => onDeleteField(index, title)}
+          isLast={index == arr.length - 1}
         />
       </li>
     )}
@@ -22,6 +24,7 @@ FieldList.propTypes = {
   fields: React.PropTypes.array,
   onChange: React.PropTypes.func,
   onAddField: React.PropTypes.func,
+  onDeleteField: React.PropTypes.func,
 };
 
 export default FieldList;
