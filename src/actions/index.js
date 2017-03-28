@@ -2,8 +2,9 @@ export const CHANGE_VALUE = 'CHANGE_VALUE';
 export const ADD_FIELD = 'ADD_FIELD';
 export const DELETE_FIELD = 'DELETE_FIELD';
 export const REQUEST_SAVING_TASK = 'REQUEST_SAVING_TASK';
-export const TASK_SAVED = 'TASK_SAVED';
-export const TASK_NOT_SAVED = 'TASK_NOT_SAVED';
+export const RECEIVE_SAVING_TASK = 'RECEIVE_SAVING_TASK';
+
+export const CHANGE_PRIVATE = 'CHANGE_PRIVATE';
 
 const requestUrl = 'https://regex-golf-server.herokuapp.com/task';
 const separator = '%26';
@@ -39,6 +40,13 @@ const requestSavingTask = () => {
   };
 };
 
+const receiveSavingTask = (id) => {
+  return {
+    type: RECEIVE_SAVING_TASK,
+    id,
+  };
+};
+
 export function saveTask() {
   return (dispatch, getState) => {
     dispatch(requestSavingTask());
@@ -60,9 +68,18 @@ export function saveTask() {
       },
       body: body,
     };
-    // return fetch(requestUrl, init)
-    //   .then(response => response.json())
-    //   .then(response => console.log(response));
-    //   //.then(json => dispatch(receivePosts(subreddit, json)))
+    return fetch(requestUrl, init)
+      .then(response => response.json())
+      .then(json => dispatch(receiveSavingTask(json._id)))
+      .catch(function(error) {  
+        console.log('Request failed', error);  
+      });
   };
 }
+
+export const changePrivate = (checked) => {
+  return {
+    type: CHANGE_PRIVATE,
+    checked,
+  };
+};

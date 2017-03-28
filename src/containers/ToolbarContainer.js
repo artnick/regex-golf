@@ -1,17 +1,6 @@
-import React from 'react';
 import { connect } from 'react-redux';
-import SaveButton from '../components/SaveButton';
-import { saveTask } from '../actions';
-
-const Toolbar = ({ onSave }) => (
-  <div>
-    <SaveButton onSave={onSave}/>
-  </div>
-);
-
-Toolbar.propTypes = {
-  onSave: React.PropTypes.func,
-};
+import Toolbar from '../components/Toolbar';
+import { saveTask, changePrivate } from '../actions';
 
 const mapStateToProps = (state) => {
   return {
@@ -23,6 +12,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onSave: () => {
       dispatch(saveTask());
+    },
+    onChangePrivate: (checked) => {
+      dispatch(changePrivate(checked));
     },
   };
 };

@@ -1,12 +1,12 @@
 import React from 'react';
 import FieldListContainer from '../containers/FieldListContainer';
-import Toolbar from '../containers/Toolbar';
+import ToolbarContainer from '../containers/ToolbarContainer';
 
 const Editor = () => (
   <div className='editor'>
     <FieldListContainer title={'match'}/>
     <FieldListContainer title={'noMatch'}/>
-    <Toolbar/>
+    <ToolbarContainer/>
   </div>
 );
 
