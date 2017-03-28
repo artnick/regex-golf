@@ -6,7 +6,7 @@ export const RECEIVE_SAVING_TASK = 'RECEIVE_SAVING_TASK';
 
 export const CHANGE_PRIVATE = 'CHANGE_PRIVATE';
 
-const requestUrl = 'https://regex-golf-server.herokuapp.com/task';
+export const REQUEST_URL = 'https://regex-golf-server.herokuapp.com/task';
 const separator = '%26';
 
 export const changeValue = (value, index, title) => {
@@ -68,7 +68,7 @@ export function saveTask() {
       },
       body: body,
     };
-    return fetch(requestUrl, init)
+    return fetch(REQUEST_URL, init)
       .then(response => response.json())
       .then(json => dispatch(receiveSavingTask(json._id)))
       .catch(function(error) {  

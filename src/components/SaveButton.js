@@ -2,6 +2,7 @@ import React from 'react';
 
 const SaveButton = ({ onSave }) => (
   <button 
+    className='save-btn'
     onClick={(event) => onSave(event.target.value)}
   >
     Save

@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BabiliPlugin = require('babili-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const PurifyCSSPlugin = require('purifycss-webpack');
 
 exports.devServer = function() {
 	return {
@@ -135,3 +136,9 @@ exports.setFreeVariable = function(key, value) {
     ],
   };
 };
+
+exports.purifyCSS = ({ paths }) => ({
+  plugins: [
+    new PurifyCSSPlugin({ paths }),
+  ],
+});

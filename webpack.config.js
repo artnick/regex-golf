@@ -1,4 +1,5 @@
 const path = require('path');
+const glob = require('glob');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const parts = require('./webpack.parts');
@@ -40,11 +41,6 @@ const productionConfig = merge([
       chunkFilename: '[name].[chunkhash:8].js',
       filename: '[name].[chunkhash:8].js',
     },
-    performance: {
-      hints: 'warning', // 'error' or false are valid too
-      maxEntrypointSize: 200000, // in bytes
-      maxAssetSize: 450000, // in bytes
-    },
     plugins: [
       new webpack.HashedModuleIdsPlugin(),
     ],
@@ -67,6 +63,9 @@ const productionConfig = merge([
   ]),
   parts.extractCSS({
     use: ['css-loader', parts.autoprefix(), 'sass-loader'],
+  }),
+  parts.purifyCSS({
+    paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
   }),
   parts.setFreeVariable(
     'process.env.NODE_ENV',

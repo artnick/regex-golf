@@ -1,7 +1,7 @@
 import { 
   CHANGE_VALUE, ADD_FIELD, DELETE_FIELD,
   REQUEST_SAVING_TASK, RECEIVE_SAVING_TASK,
-  CHANGE_PRIVATE, 
+  CHANGE_PRIVATE, REQUEST_URL,
 } from '../actions';
 
 const initialState = { 
@@ -9,6 +9,7 @@ const initialState = {
   noMatch: [''], 
   isPrivate: false,
   isSaving: false,
+  link: '',
 };
 
 function updateValueInArray(array, action) {
@@ -53,6 +54,7 @@ const editor = (state = initialState, action) => {
       return {
         ...state,
         isSaving: false,
+        link: REQUEST_URL + '/' + action.id,
       };
     case CHANGE_PRIVATE:
       return {

@@ -5,6 +5,7 @@ import { saveTask, changePrivate } from '../actions';
 const mapStateToProps = (state) => {
   return {
     isPrivate: state.editor.isPrivate,
+    link: state.editor.link,
   };
 };
 
