@@ -1,9 +1,9 @@
 import React from 'react';
 
 const Field = ({ value, onChange, onFocus, onDelete, isLast }) => (
-  <div>
+  <div className='field'>
     <input
-      className={`field ${isLast ? 'last-field' : ''}`}
+      className={`${isLast ? 'last-input' : ''}`}
       type="text" 
       value={value} 
       onChange={(event) => onChange(event.target.value)}

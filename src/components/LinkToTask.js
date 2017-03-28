@@ -2,6 +2,7 @@ import React from 'react';
 
 const LinkToTask = ({ value }) => (
   <div className='linkToTask'>
+    Permalink:
     <input 
       id='linkField'
       type='text'

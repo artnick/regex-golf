@@ -18,6 +18,8 @@ $border-radius: 4px
 
 %right-btn
   @extend %btn
+  position: absolute
+  right: 0px
   border-left: none
   border-top-left-radius: 0
   border-bottom-left-radius: 0
@@ -26,11 +28,27 @@ $border-radius: 4px
   box-sizing: border-box
 
 .app
+  @extend .container
   font-family: helvetica, arial, sans-serif
   padding: 6px 20px 30px
 
+.editor
+  @extend .row
+
+.field-list
+  @extend .col-md-6
+
+.field
+  margin-bottom: 10px
+  position: relative
+  input
+    width: 100%
+
+.delete-btn
+  @extend %right-btn
+
 input[type="text"]
-  padding: 3px 8px
+  padding: 3px 25px 3px 8px
   min-height: 28px
   line-height: 20px
   color: #24292e
@@ -38,24 +56,27 @@ input[type="text"]
   border: 1px solid $border-color
   outline: none
   border-top-left-radius: $border-radius
+  border-radius: $border-radius
   border-bottom-left-radius: $border-radius
   box-shadow: inset 0 1px 2px rgba(27,31,35,0.075)
   &:focus
     border-color: #2188ff
     outline: none
 
-.last-field
+.last-input
   border-radius: $border-radius
 
-.delete-btn
-  @extend %right-btn
+.toolbar
+  @extend .col-md-12
+  padding-top: 20px
+  padding-bottom: 20px
 
 .linkToTask
   display: inline-block
+  position: relative
 
 .copy-btn
   @extend %right-btn
-  display: inline-block
   padding: 3px 6px
 
 .save-btn

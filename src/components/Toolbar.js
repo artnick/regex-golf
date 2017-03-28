@@ -5,9 +5,9 @@ import LinkToTask from './LinkToTask';
 
 const Toolbar = ({ link, onSave, isPrivate, onChangePrivate }) => (
   <div className='toolbar'>
-    <LinkToTask value={link}/>
     <CheckBox title='Private' checked={isPrivate} onChange={onChangePrivate}/>
     <SaveButton onSave={onSave}/>
+    <LinkToTask value={link}/>
   </div>
 );
 

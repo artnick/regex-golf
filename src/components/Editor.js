@@ -4,9 +4,9 @@ import ToolbarContainer from '../containers/ToolbarContainer';
 
 const Editor = () => (
   <div className='editor'>
+    <ToolbarContainer/>
     <FieldListContainer title={'match'}/>
     <FieldListContainer title={'noMatch'}/>
-    <ToolbarContainer/>
   </div>
 );
 
