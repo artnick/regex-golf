@@ -14,6 +14,7 @@ const LinkToTask = ({ value }) => (
       }}
     />
     <label htmlFor='linkField' className='copy-btn'>copy</label>
+    <a className='goto-btn' href={value}>go to</a>
   </div>
 );
 

@@ -73,14 +73,24 @@ input[type="text"]
 
 .linkToTask
   display: inline-block
+  float: right
   position: relative
 
 .copy-btn
   @extend %right-btn
+  border-radius: 0
+  right: 49px
   padding: 3px 6px
+
+.goto-btn
+  @extend %right-btn
+  padding: 3px 6px
+  text-decoration: none
 
 .save-btn
   @extend %btn
+  margin-left: 10px
+  width: 100px
 
 .hidden
   display: none
