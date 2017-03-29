@@ -1,12 +1,15 @@
 export const CHANGE_VALUE = 'CHANGE_VALUE';
 export const ADD_FIELD = 'ADD_FIELD';
 export const DELETE_FIELD = 'DELETE_FIELD';
-export const REQUEST_SAVING_TASK = 'REQUEST_SAVING_TASK';
-export const RECEIVE_SAVING_TASK = 'RECEIVE_SAVING_TASK';
-
 export const CHANGE_PRIVATE = 'CHANGE_PRIVATE';
 
-export const REQUEST_URL = 'https://regex-golf-server.herokuapp.com/task';
+export const SAVE_TASK_REQUEST = 'SAVE_TASK_REQUEST';
+export const SAVE_TASK_SUCCES = 'SAVE_TASK_SUCCES';
+
+export const FETCH_TASK_REQUEST = 'FETCH_TASK_REQUEST';
+export const FETCH_TASK_SUCCES = 'FETCH_TASK_SUCCES';
+
+const REQUEST_URL = 'https://regex-golf-server.herokuapp.com/task';
 const separator = '%26';
 
 export const changeValue = (value, index, title) => {
@@ -33,17 +36,23 @@ export const deleteField = (index, title) => {
   };
 };
 
+export const changePrivate = (checked) => {
+  return {
+    type: CHANGE_PRIVATE,
+    checked,
+  };
+};
 
 const requestSavingTask = () => {
   return {
-    type: REQUEST_SAVING_TASK,
+    type: SAVE_TASK_REQUEST,
   };
 };
 
 const receiveSavingTask = (id) => {
   return {
-    type: RECEIVE_SAVING_TASK,
-    id,
+    type: SAVE_TASK_SUCCES,
+    link: window.location.href + 'task/' + id,
   };
 };
 
@@ -77,9 +86,29 @@ export function saveTask() {
   };
 }
 
-export const changePrivate = (checked) => {
+
+const requestTask = () => {
   return {
-    type: CHANGE_PRIVATE,
-    checked,
+    type: FETCH_TASK_REQUEST,
   };
 };
+
+const receiveTask = (json) => {
+  return {
+    type: FETCH_TASK_SUCCES,
+    match: json.match.slice(),
+    noMatch: json.nomatch.slice(),
+  };
+};
+
+export function fetchTask(id) {
+  return (dispatch) => {
+    dispatch(requestTask());
+    return fetch(REQUEST_URL + '/' + id)
+      .then(response => response.json())
+      .then(json => dispatch(receiveTask(json)))
+      .catch(function(error) {  
+        console.log('Request failed', error);  
+      });
+  };
+}

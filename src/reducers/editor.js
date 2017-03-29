@@ -1,7 +1,7 @@
 import { 
   CHANGE_VALUE, ADD_FIELD, DELETE_FIELD,
-  REQUEST_SAVING_TASK, RECEIVE_SAVING_TASK,
-  CHANGE_PRIVATE, REQUEST_URL,
+  SAVE_TASK_SUCCES, SAVE_TASK_REQUEST,
+  CHANGE_PRIVATE,
 } from '../actions';
 
 const initialState = { 
@@ -45,16 +45,16 @@ const editor = (state = initialState, action) => {
         ...state,
         [action.title]: removeItem(state[action.title], action),
       };
-    case REQUEST_SAVING_TASK:
+    case SAVE_TASK_REQUEST:
       return {
         ...state,
         isSaving: true,
       };
-    case RECEIVE_SAVING_TASK:
+    case SAVE_TASK_SUCCES:
       return {
         ...state,
         isSaving: false,
-        link: REQUEST_URL + '/' + action.id,
+        link: action.link,
       };
     case CHANGE_PRIVATE:
       return {

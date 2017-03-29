@@ -25,7 +25,7 @@ const commonConfig = merge([
 
     plugins: [
       new HtmlWebpackPlugin({
-        title: 'Hello',
+        title: 'Regex Golf',
         template: 'index.ejs'
       }),
     ],

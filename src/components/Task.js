@@ -1,32 +1,16 @@
 import React from 'react';
+import TestList from './TestList';
 
-class Task extends React.Component {
-  constructor(props) {
-    super(props);
-    console.log(this.props);
-  }
-
-  componentDidMount() {
-
-  }
-
-  componentWillUnmount() {
-
-  }
-
-  render() {
-    return (
-      <div className='task'>
-        <h3>ID: {this.props.match.params.id}</h3>
-      </div>
-    );
-  }
-}
+const Task = ({ matchList, noMatchList }) => (
+  <div >
+    <TestList title='match' list={matchList}/>
+    <TestList title='no match' list={noMatchList}/>
+  </div>
+);
 
 Task.propTypes = {
-  match: React.PropTypes.array,
-  noMatch: React.PropTypes.array,
-  isFetching: React.PropTypes.bool,
+  matchList: React.PropTypes.array,
+  noMatchList: React.PropTypes.array,
 };
 
 export default Task;

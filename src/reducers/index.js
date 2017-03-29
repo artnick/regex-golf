@@ -1,13 +1,6 @@
 import { combineReducers } from 'redux';
 import editor from './editor';
-
-
-const task = (state = {}, action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
-};
+import task from './task';
 
 const reducer = combineReducers({
   editor,
