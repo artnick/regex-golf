@@ -9,7 +9,8 @@ exports.devServer = function() {
 		devServer: {
 	    hot: true,
 	    publicPath: '/',
-	    stats: 'errors-only'
+	    stats: 'errors-only',
+      historyApiFallback: true,
 	  },
 	  plugins: [
       new webpack.HotModuleReplacementPlugin(),

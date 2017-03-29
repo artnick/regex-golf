@@ -18,9 +18,9 @@ const commonConfig = merge([
     },
     output: {
       filename: '[name].js',
-      path: PATHS.build
+      path: PATHS.build,
+      publicPath: '/'
     },
-
     context: PATHS.src,
 
     plugins: [
