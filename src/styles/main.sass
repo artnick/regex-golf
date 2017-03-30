@@ -7,6 +7,7 @@ $passed-color: #d0f7ba
 $failed-color: #ffdac9
 
 $small-spinner-size: 28px
+$big-spinner-size: 120px
 
 %btn
   min-height: 28px
@@ -39,6 +40,7 @@ $small-spinner-size: 28px
 
 .editor
   @extend .row
+
 
 .field-list
   @extend .col-md-6
@@ -105,6 +107,12 @@ input[type="text"]
   display: none
 
 
+
+.task
+  @extend .row
+  padding-top: 20px
+  text-align: center
+
 .regexp
   @extend .col-md-8
   @extend .col-md-offset-2
@@ -129,6 +137,9 @@ input[type="text"]
   &_small
     width: $small-spinner-size
     height: $small-spinner-size
+  &_big
+    width: $big-spinner-size
+    height: $big-spinner-size
 
 
 .passed
