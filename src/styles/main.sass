@@ -6,6 +6,8 @@ $border-radius: 4px
 $passed-color: #d0f7ba
 $failed-color: #ffdac9
 
+$small-spinner-size: 28px
+
 %btn
   min-height: 28px
   color: #24292e
@@ -78,6 +80,10 @@ input[type="text"]
   display: inline-block
   float: right
   position: relative
+  &__input
+    font-size: 12px
+    width: 500px
+
 
 .copy-btn
   @extend %right-btn
@@ -92,7 +98,7 @@ input[type="text"]
 
 .save-btn
   @extend %btn
-  margin-left: 10px
+  margin: 0 10px
   width: 100px
 
 .hidden
@@ -114,6 +120,16 @@ input[type="text"]
   @extend %btn
   margin-top: 5px
   padding: 5px 10px
+
+.spinner
+  display: inline-block
+  background-image: url("../images/spinner.gif")
+  background-size: cover
+  vertical-align: bottom
+  &_small
+    width: $small-spinner-size
+    height: $small-spinner-size
+
 
 .passed
   background-color: $passed-color

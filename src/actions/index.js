@@ -54,7 +54,7 @@ const requestSavingTask = () => {
 const receiveSavingTask = (id) => {
   return {
     type: SAVE_TASK_SUCCES,
-    link: window.location.href + 'task/' + id,
+    link: 'task/' + id,
   };
 };
 
@@ -98,8 +98,8 @@ const requestTask = () => {
 const receiveTask = (json) => {
   return {
     type: FETCH_TASK_SUCCES,
-    match: json.match.slice(),
-    noMatch: json.nomatch.slice(),
+    match: (json.match ? json.match.slice() : []),
+    noMatch: (json.nomatch ? json.nomatch.slice() : []),
   };
 };
 

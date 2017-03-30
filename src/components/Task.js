@@ -6,7 +6,7 @@ const Task = ({ matchList, noMatchList, regExp, onChange }) => (
     <textarea 
       className='regexp'
       value={regExp}
-      placeholder='regexp'
+      placeholder='/regexp/i'
       onChange={(event) => onChange(event.target.value)} 
     />
     <TestList title='match' list={matchList} regExp={regExp}/>
