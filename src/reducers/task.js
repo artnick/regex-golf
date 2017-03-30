@@ -1,12 +1,13 @@
 import { 
   FETCH_TASK_REQUEST, FETCH_TASK_SUCCES, 
+  CHANGE_REGEXP,
 } from '../actions';
 
 const initialState = { 
   matchList: [''], 
   noMatchList: [''], 
-  isSaving: false,
-  link: '',
+  isFetching: false,
+  regExp: '',
 };
 
 const task = (state = initialState, action) => {
@@ -24,6 +25,11 @@ const task = (state = initialState, action) => {
         matchList: action.match,
         noMatchList: action.noMatch,
         isFetching: false,
+      };
+    case CHANGE_REGEXP:
+      return {
+        ...state,
+        regExp: action.value,
       };
     default:
       return state;

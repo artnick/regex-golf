@@ -3,6 +3,9 @@
 $border-color: #d1d5da
 $border-radius: 4px
 
+$passed-color: #d0f7ba
+$failed-color: #ffdac9
+
 %btn
   min-height: 28px
   color: #24292e
@@ -95,6 +98,12 @@ input[type="text"]
 .hidden
   display: none
 
+
+.regexp
+  @extend .col-md-8
+  @extend .col-md-offset-2
+  padding: 5px 10px
+
 .test-list
   @extend .col-md-6
   ul
@@ -105,3 +114,9 @@ input[type="text"]
   @extend %btn
   margin-top: 5px
   padding: 5px 10px
+
+.passed
+  background-color: $passed-color
+
+.failed
+  background-color: $failed-color

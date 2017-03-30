@@ -9,6 +9,8 @@ export const SAVE_TASK_SUCCES = 'SAVE_TASK_SUCCES';
 export const FETCH_TASK_REQUEST = 'FETCH_TASK_REQUEST';
 export const FETCH_TASK_SUCCES = 'FETCH_TASK_SUCCES';
 
+export const CHANGE_REGEXP = 'CHANGE_REGEXP';
+
 const REQUEST_URL = 'https://regex-golf-server.herokuapp.com/task';
 const separator = '%26';
 
@@ -112,3 +114,10 @@ export function fetchTask(id) {
       });
   };
 }
+
+export const changeRegExp = (value) => {
+  return {
+    type: CHANGE_REGEXP,
+    value,
+  };
+};
