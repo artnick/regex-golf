@@ -40,6 +40,7 @@ const editor = (state = initialState, action) => {
       return {
         ...state,
         isSaving: true,
+        link: '',
       };
     case SAVE_TASK_SUCCESS:
       return {
