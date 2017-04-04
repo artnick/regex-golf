@@ -3,6 +3,7 @@ import {
   SAVE_TASK_SUCCES, SAVE_TASK_REQUEST,
   CHANGE_PRIVATE,
 } from '../actions';
+import { removeItem, updateValueInArray } from '../utils/';
 
 const initialState = { 
   match: [''], 
@@ -12,21 +13,6 @@ const initialState = {
   link: '',
 };
 
-function updateValueInArray(array, action) {
-  return array.map( (value, index) => {
-    if(index !== action.index) {
-      return value;
-    }
-    return action.value;
-  });
-}
-
-function removeItem(array, action) {
-  return [
-    ...array.slice(0, action.index),
-    ...array.slice(action.index + 1),
-  ];
-}
 
 const editor = (state = initialState, action) => {
   switch (action.type) {

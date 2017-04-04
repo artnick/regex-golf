@@ -2,17 +2,33 @@ export const CHANGE_VALUE = 'CHANGE_VALUE';
 export const ADD_FIELD = 'ADD_FIELD';
 export const DELETE_FIELD = 'DELETE_FIELD';
 export const CHANGE_PRIVATE = 'CHANGE_PRIVATE';
-
 export const SAVE_TASK_REQUEST = 'SAVE_TASK_REQUEST';
 export const SAVE_TASK_SUCCES = 'SAVE_TASK_SUCCES';
 
 export const FETCH_TASK_REQUEST = 'FETCH_TASK_REQUEST';
 export const FETCH_TASK_SUCCES = 'FETCH_TASK_SUCCES';
-
 export const CHANGE_REGEXP = 'CHANGE_REGEXP';
+
+export const SHOW_NOTIFICATION = 'SHOW_NOTIFICATION';
+export const HIDE_NOTIFICATION = 'HIDE_NOTIFICATION';
+
 
 const REQUEST_URL = 'https://regex-golf-server.herokuapp.com/task';
 const separator = '%26';
+
+export const showNotification = (notification) => {
+  return {
+    type: SHOW_NOTIFICATION,
+    notification,
+  };
+};
+
+export const hideNotification = () => {
+  return {
+    type: SHOW_NOTIFICATION,
+    notification: '',
+  };
+};
 
 export const changeValue = (value, index, title) => {
   return {
@@ -60,9 +76,14 @@ const receiveSavingTask = (id) => {
 
 export function saveTask() {
   return (dispatch, getState) => {
-    dispatch(requestSavingTask());
 
     const task = getState().editor;
+
+    if(task.match.filter((value) => !!value).length == 0) {
+      dispatch(showNotification('Need to add at least one no empty match test'));
+      return;
+    }
+
     const matchList = task.match.slice(0,-1).join(separator);
     const noMatchList = task.noMatch.slice(0,-1).join(separator);
     const isPrivate = task.isPrivate;
@@ -79,11 +100,14 @@ export function saveTask() {
       },
       body: body,
     };
+
+    dispatch(requestSavingTask());
     return fetch(REQUEST_URL, init)
       .then(response => response.json())
       .then(json => dispatch(receiveSavingTask(json._id)))
       .catch(function(error) {  
-        console.log('Request failed', error);  
+        console.log(error); 
+        dispatch(showNotification('Saving failure'));  
       });
   };
 }
@@ -109,8 +133,9 @@ export function fetchTask(id) {
     return fetch(REQUEST_URL + '/' + id)
       .then(response => response.json())
       .then(json => dispatch(receiveTask(json)))
-      .catch(function(error) {  
-        console.log('Request failed', error);  
+      .catch(function(error) { 
+        console.log(error); 
+        dispatch(showNotification('Task not found'));  
       });
   };
 }

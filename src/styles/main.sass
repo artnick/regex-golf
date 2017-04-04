@@ -141,9 +141,27 @@ input[type="text"]
     width: $big-spinner-size
     height: $big-spinner-size
 
+.notification
+  position: absolute
+  transition: all 1s
+  height: 20px
+  z-index: 101
+  top: -50px
+  left: 0
+  right: 0
+  background: #fde073
+  text-align: center
+  &_show
+    top: 0
 
 .passed
   background-color: $passed-color
 
 .failed
   background-color: $failed-color
+
+@keyframes slideDown
+  0%
+    transform: translateY(-50px)
+  100% 
+    transform: translateY(0px)
