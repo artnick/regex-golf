@@ -1,5 +1,7 @@
 import { 
-  FETCH_TASK_REQUEST, FETCH_TASK_SUCCESS, 
+  FETCH_TASK_REQUEST, 
+  FETCH_TASK_SUCCESS, 
+  FETCH_TASK_FAILURE,
   CHANGE_REGEXP,
 } from '../actions';
 
@@ -24,6 +26,13 @@ const task = (state = initialState, action) => {
         ...state,
         matchList: action.match,
         noMatchList: action.noMatch,
+        isFetching: false,
+      };
+    case FETCH_TASK_FAILURE:
+      return {
+        ...state,
+        matchList: [],
+        noMatchList: [],
         isFetching: false,
       };
     case CHANGE_REGEXP:

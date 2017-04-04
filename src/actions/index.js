@@ -8,9 +8,10 @@ export const SAVE_TASK_REQUEST = 'SAVE_TASK_REQUEST';
 export const SAVE_TASK_SUCCESS = 'SAVE_TASK_SUCCESS';
 export const SAVE_TASK_FAILURE = 'SAVE_TASK_FAILURE';
 
+export const CHANGE_REGEXP = 'CHANGE_REGEXP';
 export const FETCH_TASK_REQUEST = 'FETCH_TASK_REQUEST';
 export const FETCH_TASK_SUCCESS = 'FETCH_TASK_SUCCESS';
-export const CHANGE_REGEXP = 'CHANGE_REGEXP';
+export const FETCH_TASK_FAILURE = 'FETCH_TASK_FAILURE';
 
 export const SHOW_NOTIFICATION = 'SHOW_NOTIFICATION';
 export const HIDE_NOTIFICATION = 'HIDE_NOTIFICATION';
@@ -123,13 +124,13 @@ export function saveTask() {
 }
 
 
-const requestTask = () => {
+const fetchTaskRequest = () => {
   return {
     type: FETCH_TASK_REQUEST,
   };
 };
 
-const receiveTask = (json) => {
+const fetchTaskSuccess = (json) => {
   return {
     type: FETCH_TASK_SUCCESS,
     match: (json.match ? json.match.slice() : []),
@@ -137,15 +138,21 @@ const receiveTask = (json) => {
   };
 };
 
+const fetchTaskFailure = () => {
+  return {
+    type: FETCH_TASK_FAILURE,
+  };
+};
+
 export function fetchTask(id) {
   return (dispatch) => {
-    dispatch(requestTask());
+    dispatch(fetchTaskRequest());
     return fetch(REQUEST_URL + '/' + id)
       .then(response => response.json())
-      .then(json => dispatch(receiveTask(json)))
+      .then(json => dispatch(fetchTaskSuccess(json)))
       .catch(function(error) { 
         console.log(error); 
-        dispatch(showNotification('Task not found'));  
+        dispatch(fetchTaskFailure());  
       });
   };
 }

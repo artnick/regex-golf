@@ -1,7 +1,11 @@
 import { 
-  CHANGE_VALUE, ADD_FIELD, DELETE_FIELD,
-  SAVE_TASK_SUCCESS, SAVE_TASK_REQUEST,
-  SAVE_TASK_FAILURE, CHANGE_PRIVATE,
+  CHANGE_VALUE, 
+  CHANGE_PRIVATE,
+  ADD_FIELD, 
+  DELETE_FIELD,
+  SAVE_TASK_REQUEST,
+  SAVE_TASK_SUCCESS,
+  SAVE_TASK_FAILURE, 
 } from '../actions';
 import { removeItem, updateValueInArray } from '../utils/';
 

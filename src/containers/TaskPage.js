@@ -10,6 +10,7 @@ class TaskPage extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props.location);
     this.props.onLoad(this.props.match.params.id);
   }
 
@@ -32,6 +33,7 @@ class TaskPage extends React.Component {
 
 TaskPage.propTypes = {
   match: React.PropTypes.object,
+  location: React.PropTypes.object,
   dispatch: React.PropTypes.func,
   regExp: React.PropTypes.string,
   isFetching: React.PropTypes.bool,
