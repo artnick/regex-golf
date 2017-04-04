@@ -3,10 +3,11 @@ export const ADD_FIELD = 'ADD_FIELD';
 export const DELETE_FIELD = 'DELETE_FIELD';
 export const CHANGE_PRIVATE = 'CHANGE_PRIVATE';
 export const SAVE_TASK_REQUEST = 'SAVE_TASK_REQUEST';
-export const SAVE_TASK_SUCCES = 'SAVE_TASK_SUCCES';
+export const SAVE_TASK_SUCCESS = 'SAVE_TASK_SUCCESS';
+export const SAVE_TASK_FAILURE = 'SAVE_TASK_FAILURE';
 
 export const FETCH_TASK_REQUEST = 'FETCH_TASK_REQUEST';
-export const FETCH_TASK_SUCCES = 'FETCH_TASK_SUCCES';
+export const FETCH_TASK_SUCCESS = 'FETCH_TASK_SUCCESS';
 export const CHANGE_REGEXP = 'CHANGE_REGEXP';
 
 export const SHOW_NOTIFICATION = 'SHOW_NOTIFICATION';
@@ -61,16 +62,22 @@ export const changePrivate = (checked) => {
   };
 };
 
-const requestSavingTask = () => {
+const saveTaskRequest = () => {
   return {
     type: SAVE_TASK_REQUEST,
   };
 };
 
-const receiveSavingTask = (id) => {
+const saveTaskSuccess = (id) => {
   return {
-    type: SAVE_TASK_SUCCES,
+    type: SAVE_TASK_SUCCESS,
     link: 'task/' + id,
+  };
+};
+
+const saveTaskFailure = () => {
+  return {
+    type: SAVE_TASK_FAILURE,
   };
 };
 
@@ -101,13 +108,14 @@ export function saveTask() {
       body: body,
     };
 
-    dispatch(requestSavingTask());
+    dispatch(saveTaskRequest());
+
     return fetch(REQUEST_URL, init)
       .then(response => response.json())
-      .then(json => dispatch(receiveSavingTask(json._id)))
+      .then(json => dispatch(saveTaskSuccess(json._id)))
       .catch(function(error) {  
         console.log(error); 
-        dispatch(showNotification('Saving failure'));  
+        dispatch(saveTaskFailure());  
       });
   };
 }
@@ -121,7 +129,7 @@ const requestTask = () => {
 
 const receiveTask = (json) => {
   return {
-    type: FETCH_TASK_SUCCES,
+    type: FETCH_TASK_SUCCESS,
     match: (json.match ? json.match.slice() : []),
     noMatch: (json.nomatch ? json.nomatch.slice() : []),
   };

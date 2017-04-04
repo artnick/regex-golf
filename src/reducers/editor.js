@@ -1,7 +1,7 @@
 import { 
   CHANGE_VALUE, ADD_FIELD, DELETE_FIELD,
-  SAVE_TASK_SUCCES, SAVE_TASK_REQUEST,
-  CHANGE_PRIVATE,
+  SAVE_TASK_SUCCESS, SAVE_TASK_REQUEST,
+  SAVE_TASK_FAILURE, CHANGE_PRIVATE,
 } from '../actions';
 import { removeItem, updateValueInArray } from '../utils/';
 
@@ -21,6 +21,11 @@ const editor = (state = initialState, action) => {
         ...state,
         [action.title]: updateValueInArray(state[action.title], action),
       };
+    case CHANGE_PRIVATE:
+      return {
+        ...state,
+        isPrivate: action.checked,
+      };
     case ADD_FIELD:
       return {
         ...state,
@@ -36,16 +41,16 @@ const editor = (state = initialState, action) => {
         ...state,
         isSaving: true,
       };
-    case SAVE_TASK_SUCCES:
+    case SAVE_TASK_SUCCESS:
       return {
         ...state,
         isSaving: false,
         link: action.link,
       };
-    case CHANGE_PRIVATE:
+    case SAVE_TASK_FAILURE:
       return {
         ...state,
-        isPrivate: action.checked,
+        isSaving: false,
       };
     default:
       return state;
