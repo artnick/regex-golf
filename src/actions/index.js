@@ -1,3 +1,5 @@
+import { parseTestList } from '../utils';
+
 export const CHANGE_VALUE = 'CHANGE_VALUE';
 export const ADD_FIELD = 'ADD_FIELD';
 export const DELETE_FIELD = 'DELETE_FIELD';
@@ -91,8 +93,8 @@ export function saveTask() {
       return;
     }
 
-    const matchList = task.match.slice(0,-1).join(separator);
-    const noMatchList = task.noMatch.slice(0,-1).join(separator);
+    const matchList = parseTestList(task.match).join(separator);
+    const noMatchList = parseTestList(task.noMatch).join(separator);
     const isPrivate = task.isPrivate;
 
     const body =`isPrivate=${isPrivate}`.concat(
